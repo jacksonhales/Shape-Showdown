@@ -25,7 +25,7 @@ namespace MyGame.src
             set { width = value; }
         }
 
-        public Line(float _facingAngle, int _x, int _y, Color _color, int _length, int _width) : base(_facingAngle, _x, _y, _color)
+        public Line(int _x, int _y, Color _color, int _length, int _width) : base(_x, _y, _color)
         {
             length = _length;
             width = _width;
@@ -36,7 +36,7 @@ namespace MyGame.src
             throw new NotImplementedException();
         }
 
-        public override void RotateRight()
+        public override void ThrustForward()
         {
             throw new NotImplementedException();
         }

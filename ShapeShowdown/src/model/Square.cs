@@ -25,7 +25,7 @@ namespace MyGame.src
         }
 
 
-        public Square(float _facingAngle, int _x, int _y, Color _color, int _width, int _height) : base(_facingAngle, _x, _y, _color)
+        public Square(int _x, int _y, Color _color, int _width, int _height) : base(_x, _y, _color)
         {
             height = _height;
             width = _width;
@@ -36,7 +36,7 @@ namespace MyGame.src
             throw new NotImplementedException();
         }
 
-        public override void RotateRight()
+        public override void ThrustForward()
         {
             throw new NotImplementedException();
         }

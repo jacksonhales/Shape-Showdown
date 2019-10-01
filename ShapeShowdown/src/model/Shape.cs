@@ -13,12 +13,7 @@ namespace MyGame.src
         private float y;
         private Color color;
         private float facingAngle;
-
-        public float FacingAngle
-        {
-            get { return facingAngle; }
-            set { facingAngle = value; }
-        }
+        private float previousFacingAngle;
 
         public float X
         {
@@ -37,19 +32,28 @@ namespace MyGame.src
             set { color = value; }
         }
 
-        public Shape(float _facingAngle, float _x, float _y, Color _color)
+        public float FacingAngle
         {
-            facingAngle = _facingAngle;
+            get { return facingAngle; }
+            set { facingAngle = value; }
+        }
+
+        public float PreviousFacingAngle
+        {
+            get { return previousFacingAngle; }
+            set { previousFacingAngle = value; }
+        }
+
+
+        public Shape(float _x, float _y, Color _color)
+        {
+            facingAngle = 358.5F;
             x = _x;
             y = _y;
             color = _color;
         }
 
         public abstract void Draw();
-
-        public abstract void RotateLeft();
-
-        public abstract void RotateRight();
 
         public abstract void ThrustForward();
 

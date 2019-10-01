@@ -12,7 +12,7 @@ namespace MyGame
             SwinGame.OpenGraphicsWindow("GameMain", 800, 600);
             //SwinGame.ShowSwinGameSplashScreen();
 
-            src.Triangle t = new src.Triangle(360, 400, 275, Color.Black, 425, 225, 450, 275);
+            src.Triangle t = new src.Triangle(400, 275, Color.Black, 425, 225, 450, 275);
 
             //Run the game loop
             while (false == SwinGame.WindowCloseRequested())
@@ -29,12 +29,14 @@ namespace MyGame
 
                 if (SwinGame.KeyDown(KeyCode.RightKey))
                 {
-                    t.RotateRight();
+                    t.Direction = ShipMoveDirection.RIGHT;
+                    t.UpdateTriangle();
                 }
 
                 if (SwinGame.KeyDown(KeyCode.LeftKey))
                 {
-                    t.RotateLeft();
+                    t.Direction = ShipMoveDirection.LEFT;
+                    t.UpdateTriangle();
                 }
 
                 if (SwinGame.KeyDown(KeyCode.UpKey))

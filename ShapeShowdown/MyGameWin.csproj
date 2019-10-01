@@ -45,6 +45,7 @@
     <Compile Include="src\model\Line.cs" />
     <Compile Include="src\model\Shape.cs" />
     <Compile Include="src\model\Point.cs" />
+    <Compile Include="src\model\ShipMoveDirection.cs" />
     <Compile Include="src\ShapeShowdownGame.cs" />
     <Compile Include="src\model\Square.cs" />
     <Compile Include="src\model\Triangle.cs" />

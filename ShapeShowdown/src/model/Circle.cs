@@ -18,7 +18,7 @@ namespace MyGame.src
             set { radius = value; }
         }
 
-        public Circle(float _facingAngle, int _x, int _y, Color _color, int _radius) : base(_facingAngle, _x, _y, _color)
+        public Circle(int _x, int _y, Color _color, int _radius) : base(_x, _y, _color)
         {
             radius = _radius;
         }
@@ -28,7 +28,7 @@ namespace MyGame.src
             throw new NotImplementedException();
         }
 
-        public override void RotateRight()
+        public override void ThrustForward()
         {
             throw new NotImplementedException();
         }
