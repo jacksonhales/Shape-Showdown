@@ -36,7 +36,7 @@ namespace MyGame.src
             throw new NotImplementedException();
         }
 
-        public override void ThrustForward()
+        public override void MoveForward()
         {
             throw new NotImplementedException();
         }

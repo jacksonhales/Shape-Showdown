@@ -9,36 +9,53 @@ namespace MyGame.src
 {
     public class Line : Shape
     {
-        private int length;
+        private float endX;
+        private float endY;
+        private Triangle shotBy;
 
-        public int Length
+        public Triangle ShotBy
         {
-            get { return length; }
-            set { length = value; }
+            get { return shotBy; }
+            set { shotBy = value; }
         }
 
-        private int width;
-
-        public int Width
+        public float EndX
         {
-            get { return width; }
-            set { width = value; }
+            get { return endX; }
+            set { endX = value; }
+        }
+        public float EndY
+        {
+            get { return endY; }
+            set { endY = value; }
         }
 
-        public Line(int _x, int _y, Color _color, int _length, int _width) : base(_x, _y, _color)
+        public Line(float _x, float _y, Color _color, float _endX, float _endY, Triangle _shotBy) : base(_x, _y, _color)
         {
-            length = _length;
-            width = _width;
+            endX = _endX;
+            endY = _endY;
+            shotBy = _shotBy;
+            FacingAngle = shotBy.FacingAngle;
         }
 
         public override void Draw()
         {
-            throw new NotImplementedException();
+            SwinGame.DrawLine(Color, X, Y, EndX, EndY);
         }
 
-        public override void ThrustForward()
+        public override void MoveForward()
         {
-            throw new NotImplementedException();
+            float horizontalVelocity = (float)(Math.Cos(FacingAngle)) * 3;
+            float verticalVelocity = (float)(Math.Sin(FacingAngle)) * 3;
+
+            // move the ship - 1 point at a time
+            endX = endX + horizontalVelocity * 1;
+            endY = endY + verticalVelocity * 1;
+
+            X = X + horizontalVelocity * 1;
+            Y = Y + verticalVelocity * 1;
+
+
         }
     }
 }

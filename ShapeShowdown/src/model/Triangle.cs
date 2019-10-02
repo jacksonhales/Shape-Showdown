@@ -15,6 +15,20 @@ namespace MyGame.src
         private Point verticeC;
         private Point center;
         private ShipMoveDirection direction;
+        private List<Line> activeShots;
+        private bool canShoot;
+
+        public bool CanShoot
+        {
+            get { return canShoot; }
+            set { canShoot = value; }
+        }
+
+        public List<Line> ActiveShots
+        {
+            get { return activeShots; }
+            set { activeShots = value; }
+        }
 
         public Point VerticeC
         {
@@ -27,7 +41,6 @@ namespace MyGame.src
             get { return verticeB; }
             set { verticeB = value; }
         }
-
 
         public Point VerticeA
         {
@@ -52,15 +65,25 @@ namespace MyGame.src
             verticeB = new Point(_midX, _midY);
             verticeC = new Point(_endX, _endY);
             center = FindCenter();
+            activeShots = new List<Line>();
         }
 
+        internal void Shoot()
+        {
+            if (canShoot)
+            {
+                // create line
+                Line shot = new Line(this.VerticeB.X, this.verticeB.Y, Color.Red, this.verticeB.X + 30, this.verticeB.Y + 30, this);
+                activeShots.Add(shot);
+            }
+            
+        }
 
-        
         public Point FindCenter()
         {
-            float centroidX = ((verticeA.X + verticeB.X + verticeC.X) / 3);
-            float centroidY = ((verticeA.Y + verticeB.Y + verticeC.Y) / 3);
-            return new Point(centroidX, centroidY);
+            float centreX = ((verticeA.X + verticeB.X + verticeC.X) / 3);
+            float centerY = ((verticeA.Y + verticeB.Y + verticeC.Y) / 3);
+            return new Point(centreX, centerY);
         }
 
         public override void Draw()
@@ -77,18 +100,18 @@ namespace MyGame.src
             switch (direction)
             {
                 case ShipMoveDirection.LEFT:
-                    FacingAngle -= 0.05F;
+                    FacingAngle -= 0.10F;
 
-                    if (FacingAngle < 1)
+                    if (FacingAngle < 0)
                     {
                         FacingAngle = 360;
                     }
                     break;
                 case ShipMoveDirection.RIGHT:
-                    FacingAngle += 0.05F;
+                    FacingAngle += 0.10F;
                     if (FacingAngle > 360)
                     {
-                        FacingAngle = 1;
+                        FacingAngle = 0;
                     }
                     break;
                 default:
@@ -139,10 +162,11 @@ namespace MyGame.src
             verticeC.Y = tempY + center.Y;
         }
  
-        public override void ThrustForward()
+        public override void MoveForward()
         {
-            float horizontalVelocity = (float)(Math.Cos(FacingAngle));
-            float verticalVelocity = (float)(Math.Sin(FacingAngle));
+            // set forward speed
+            float horizontalVelocity = (float)(Math.Cos(FacingAngle)) * 3;
+            float verticalVelocity = (float)(Math.Sin(FacingAngle)) * 3;
 
             // move the ship - 1 point at a time
             center.X = center.X + horizontalVelocity * 1;

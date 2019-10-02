@@ -47,7 +47,7 @@ namespace MyGame.src
 
         public Shape(float _x, float _y, Color _color)
         {
-            facingAngle = 358.5F;
+            facingAngle = 89.5F;
             x = _x;
             y = _y;
             color = _color;
@@ -55,7 +55,7 @@ namespace MyGame.src
 
         public abstract void Draw();
 
-        public abstract void ThrustForward();
+        public abstract void MoveForward();
 
     }
 }
