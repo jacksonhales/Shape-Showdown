@@ -17,6 +17,13 @@ namespace MyGame.src
         private ShipMoveDirection direction;
         private List<Line> activeShots;
         private bool canShoot;
+        private DateTime timeLastFired;
+
+        public DateTime TimeLastFired
+        {
+            get { return timeLastFired; }
+            set { timeLastFired = value; }
+        }
 
         public bool CanShoot
         {
@@ -70,11 +77,21 @@ namespace MyGame.src
 
         internal void Shoot()
         {
+            if (DateTime.Now >= timeLastFired.AddMilliseconds(500))
+            {
+                canShoot = true;
+            }
+            else
+            {
+                canShoot = false;
+            }
+
             if (canShoot)
             {
                 // create line
-                Line shot = new Line(this.VerticeB.X, this.verticeB.Y, Color.Red, this.verticeB.X + 30, this.verticeB.Y + 30, this);
+                Line shot = new Line(this.VerticeB.X, this.verticeB.Y, Color.Red, this.VerticeB.X + 30, this.VerticeB.Y + 30, this);
                 activeShots.Add(shot);
+                timeLastFired = DateTime.Now;
             }
             
         }
@@ -100,7 +117,7 @@ namespace MyGame.src
             switch (direction)
             {
                 case ShipMoveDirection.LEFT:
-                    FacingAngle -= 0.10F;
+                    FacingAngle -= 1F;
 
                     if (FacingAngle < 0)
                     {
@@ -108,7 +125,7 @@ namespace MyGame.src
                     }
                     break;
                 case ShipMoveDirection.RIGHT:
-                    FacingAngle += 0.10F;
+                    FacingAngle += 1F;
                     if (FacingAngle > 360)
                     {
                         FacingAngle = 0;
@@ -169,17 +186,17 @@ namespace MyGame.src
             float verticalVelocity = (float)(Math.Sin(FacingAngle)) * 3;
 
             // move the ship - 1 point at a time
-            center.X = center.X + horizontalVelocity * 1;
-            center.Y = center.Y + verticalVelocity * 1;
+            center.X = center.X + horizontalVelocity;
+            center.Y = center.Y + verticalVelocity;
 
-            verticeA.X = verticeA.X + horizontalVelocity * 1;
-            verticeA.Y = verticeA.Y + verticalVelocity * 1;
+            verticeA.X = verticeA.X + horizontalVelocity;
+            verticeA.Y = verticeA.Y + verticalVelocity;
 
-            verticeB.X = verticeB.X + horizontalVelocity * 1;
-            verticeB.Y = verticeB.Y + verticalVelocity * 1;
+            verticeB.X = verticeB.X + horizontalVelocity;
+            verticeB.Y = verticeB.Y + verticalVelocity;
 
-            verticeC.X = verticeC.X + horizontalVelocity * 1;
-            verticeC.Y = verticeC.Y + verticalVelocity * 1; 
+            verticeC.X = verticeC.X + horizontalVelocity;
+            verticeC.Y = verticeC.Y + verticalVelocity; 
         }
 
     }

@@ -48,14 +48,11 @@ namespace MyGame.src
             float horizontalVelocity = (float)(Math.Cos(FacingAngle)) * 3;
             float verticalVelocity = (float)(Math.Sin(FacingAngle)) * 3;
 
-            // move the ship - 1 point at a time
-            endX = endX + horizontalVelocity * 1;
-            endY = endY + verticalVelocity * 1;
+            endX = endX + horizontalVelocity;
+            endY = endY + verticalVelocity;
 
-            X = X + horizontalVelocity * 1;
-            Y = Y + verticalVelocity * 1;
-
-
+            X = X + horizontalVelocity;
+            Y = Y + verticalVelocity;
         }
     }
 }

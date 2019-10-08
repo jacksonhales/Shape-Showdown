@@ -51,6 +51,10 @@ namespace MyGame
                     t.CanShoot = true;
                 }
 
+                SwinGame.DrawText("Facing Angle: " + t.FacingAngle.ToString(), Color.Black, 10, 10);
+                SwinGame.DrawText("Center X: " + t.Center.X, Color.Black, 10, 20);
+                SwinGame.DrawText("Center Y: " + t.Center.Y, Color.Black, 10, 30);
+
                 if (t.ActiveShots.Count > 0)
                 {
                     foreach (Line l in t.ActiveShots)
